@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Exports\CustomerExport;
 use App\Exports\CustomerExportView;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\CustomerExportMultiSheet;
+use App\Exports\CustomerExportWithHeadingsAndER;
+
 class CustomerController extends Controller
 {
     /**
@@ -24,76 +27,40 @@ class CustomerController extends Controller
     {
         return Excel::download(new CustomerExport, 'customer_all.xlsx');
     }
-
+    
+    /**
+     * export_view
+     *
+     * @return void
+     */
     public function export_view()
     {
         return Excel::download(new CustomerExportView, 'customer_view.xlsx');
     }
 
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function export_format($format)
     {
-        //
+        $format = ucfirst($format);
+        $ext = strtolower($format);
+
+        if(in_array(strtoupper($format),["DOMPDF"])) $ext = "pdf";
+        
+        return Excel::download(new CustomerExport, 'customer'.now()->toDateString().'.'.$ext, $format);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function exprot_multipe_sheets()
     {
-        //
+        return Excel::download(new CustomerExportMultiSheet, 'customer_multi_seets.xlsx');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Customer $customer)
+
+    public function export_headings()
     {
-        //
+        return Excel::download(new CustomerExportWithHeadingsAndER, 'customer_headings.xlsx');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Customer $customer)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Customer $customer)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Customer $customer)
-    {
-        //
-    }
+    
 }
