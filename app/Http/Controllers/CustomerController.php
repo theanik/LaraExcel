@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use Illuminate\Http\Request;
-
+use App\Exports\CustomerExport;
+use App\Exports\CustomerExportView;
+use Maatwebsite\Excel\Facades\Excel;
 class CustomerController extends Controller
 {
     /**
@@ -17,6 +19,17 @@ class CustomerController extends Controller
         $customers = Customer::all();
         return view("customer.index", ['customers' => $customers]);
     }
+
+    public function export_all()
+    {
+        return Excel::download(new CustomerExport, 'customer_all.xlsx');
+    }
+
+    public function export_view()
+    {
+        return Excel::download(new CustomerExportView, 'customer_view.xlsx');
+    }
+
 
     /**
      * Show the form for creating a new resource.

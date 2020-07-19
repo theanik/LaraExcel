@@ -24,3 +24,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Customer --
 Route::get('customer', 'CustomerController@index');
 
+Route::get('customer_exprot_all', 'CustomerController@export_all')->name("export_all");
+Route::get('customer_exprot_view', 'CustomerController@export_view')->name("export_view");
+
