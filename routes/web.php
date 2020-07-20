@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Customer --
+// Customer -- Export
 Route::get('customer', 'CustomerController@index');
 
 Route::get('customer_exprot_all', 'CustomerController@export_all')->name("export_all");
@@ -33,4 +33,8 @@ Route::get('customer_exprot_multipe_sheets', 'CustomerController@exprot_multipe_
 
 Route::get('customer_with_heading_and_chunk', 'CustomerController@export_headings')->name("export_headings");
 Route::get('export_customer_sale', 'CustomerController@export_customer_sale')->name('export_customer_sale');
+Route::get('export_customer_sale_total', 'CustomerController@export_customer_sale_total')->name('export_customer_sale_total');
 
+// Customer -- Import
+
+Route::post('customer_import','CustomerController@customer_import')->name('customer_import');
