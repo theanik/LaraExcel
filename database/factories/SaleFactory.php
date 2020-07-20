@@ -1,0 +1,14 @@
+<?php
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+
+use App\Sale;
+use Faker\Generator as Faker;
+
+$factory->define(Sale::class, function (Faker $faker) {
+    return [
+        'customer_id' => factory(App\Customer::class)->create()->id,
+        'account_num' => $faker->randomNumber,
+        'amount' => $faker->numberBetween(1000,100000)
+    ];
+});

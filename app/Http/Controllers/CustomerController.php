@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Exports\CustomerExport;
 use App\Exports\CustomerExportView;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\CustomerSaleExportMap;
 use App\Exports\CustomerExportMultiSheet;
 use App\Exports\CustomerExportWithHeadingsAndER;
 
@@ -61,6 +62,10 @@ class CustomerController extends Controller
         return Excel::download(new CustomerExportWithHeadingsAndER, 'customer_headings.xlsx');
     }
 
+    public function export_customer_sale()
+    {
+        return Excel::download(new CustomerSaleExportMap, 'customer_sale.xlsx');
+    }
 
     
 }

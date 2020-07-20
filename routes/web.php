@@ -32,4 +32,5 @@ Route::get('customer_exprot_format/{format}', 'CustomerController@export_format'
 Route::get('customer_exprot_multipe_sheets', 'CustomerController@exprot_multipe_sheets')->name("exprot_multipe_sheets");
 
 Route::get('customer_with_heading_and_chunk', 'CustomerController@export_headings')->name("export_headings");
+Route::get('export_customer_sale', 'CustomerController@export_customer_sale')->name('export_customer_sale');
 

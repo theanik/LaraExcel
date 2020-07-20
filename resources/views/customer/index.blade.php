@@ -18,6 +18,8 @@
 
                         <a href="{{ route('exprot_multipe_sheets') }}" class="btn btn-outline-danger">Export Customer Multisheets</a>
                         <a href="{{ route('export_headings') }}" class="btn btn-outline-danger">Export with Headings</a>
+                        
+                        <a href="{{ route('export_customer_sale') }}" class="btn btn-outline-danger">Export Customer Sale</a>
 
                         
                         
